@@ -35,8 +35,7 @@ SOURCES += \
     sidework.cpp \
     teamtask.cpp \
     daywork.cpp \
-    roster.cpp \
-    testteam.cpp
+    roster.cpp
 
 HEADERS += \
         mainwindow.h \

@@ -1,5 +1,6 @@
 #include "operatorius.h"
 #include <QString>
+#include <QMutableStringListIterator>
 Operatorius::Operatorius(QString id, QString name, int level)
 {
     _id = id;
@@ -24,7 +25,14 @@ int Operatorius::getLevel() const
 
 QString Operatorius::Operatorius::getShortName() const
 {
-    // _name must be split by space and the first item
-    // used as the first letter with period
-    return _name;
+  // John Doe -> J.Doe
+  QStringList strList = _name.split(QRegExp("\\W+"), QString::SkipEmptyParts);
+  QString result = QString("");
+  QList<QString>::iterator i;
+  for (i = strList.begin(); i + 1 != strList.end(); ++i)
+  {
+      result = result.append((*i).left(1).toUpper()).append(".");
+  }
+  result = result.append(strList.last());
+  return result;
 }
