@@ -1,16 +1,18 @@
 #include "daywork.h"
 #include <QDate>
-#include <QVector>
+#include <QList>
 #include "teamtask.h"
+#include "aparatas.h"
+#include <QlistIterator>
 Daywork::Daywork(QDate date)
 {
     _date = date;
-    //_teamtasks = new QVector<Teamtask>();
+    //_teamtasks = new QList<Teamtask>();
 }
-Daywork::Daywork(QDate date, QVector<Teamtask> teamtasks)
+
+void Daywork::addTeamTask(TeamTask teamTask)
 {
-    _date = date;
-    _teamtasks = teamtasks;
+  _teamTasks.append(teamTask);
 }
 
 QDate Daywork::getDate() const
@@ -18,7 +20,22 @@ QDate Daywork::getDate() const
     return _date;
 }
 
-QVector<Teamtask> Daywork::getTeamTasks() const
+QList<TeamTask> Daywork::getTeamTasks() const
 {
-    return _teamtasks;
+    return _teamTasks;
+}
+
+QList<TeamTask> Daywork::getTTByAparatas(Aparatas aparatas) const
+{
+  QList<TeamTask> result;
+  QListIterator<TeamTask> i(_teamTasks);
+  while (i.hasNext())
+  {
+    TeamTask tt = i.next();
+    if (tt.getTeam().getAparatai().contains(aparatas))
+    {
+      result << tt;
+    }
+  }
+  return result;
 }

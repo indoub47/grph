@@ -1,5 +1,6 @@
 #include "aparatas.h"
 #include <QString>
+using namespace std;
 Aparatas::Aparatas(QString id, QString model, int level)
 {
     _id = id;
@@ -21,3 +22,5 @@ int Aparatas::getLevel() const
 {
     return _level;
 }
+
+

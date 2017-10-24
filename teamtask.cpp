@@ -2,26 +2,38 @@
 #include "segmentas.h"
 #include "sidework.h"
 #include "team.h"
-#include <QVector>
+#include <QList>
 
-Teamtask::Teamtask(Team team, QVector<Segmentas> segmentai, QVector<Sidework> sideworks)
+TeamTask::TeamTask(Team team, QList<Segmentas> segmentai, QList<Sidework> sideworks)
 {
     _team = team;
     _segmentai = segmentai;
     _sideworks = sideworks;
 }
 
-Team Teamtask::getTeam() const
+Team TeamTask::getTeam() const
 {
     return _team;
 }
 
-QVector<Segmentas> Teamtask::getSegmentai() const
+void TeamTask::addSegmentas(Segmentas segmentas)
+{
+  if (!_segmentai.contains(segmentas))
+    _segmentai.append(segmentas);
+}
+
+void TeamTask::addSidework(Sidework sidework)
+{
+  if (!_sideworks.contains(sidework))
+    _sideworks.append(sidework);
+}
+
+QList<Segmentas> TeamTask::getSegmentai() const
 {
     return _segmentai;
 }
 
-QVector<Sidework> Teamtask::getSideworks() const
+QList<Sidework> TeamTask::getSideworks() const
 {
     return _sideworks;
 }

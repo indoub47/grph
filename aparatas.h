@@ -10,6 +10,15 @@ public:
     QString getId() const;
     QString getModel() const;
     int getLevel() const;
+
+    // comparison
+    friend inline bool operator< (const Aparatas& l, const Aparatas& r)
+    {return (l._level < r._level) || (l._level == r._level && l._id < r._id);}
+    friend inline bool operator==(const Aparatas& l, const Aparatas& r){return l._id == r._id;}
+    friend inline bool operator> (const Aparatas& lhs, const Aparatas& rhs){ return rhs < lhs; }
+    friend inline bool operator<=(const Aparatas& lhs, const Aparatas& rhs){ return !(lhs > rhs); }
+    friend inline bool operator>=(const Aparatas& lhs, const Aparatas& rhs){ return !(lhs < rhs); }
+    friend inline bool operator!=(const Aparatas& lhs, const Aparatas& rhs){ return !(lhs == rhs); }
 private:
   QString _id;
   QString _model;

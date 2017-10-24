@@ -1,7 +1,7 @@
 #ifndef DAYWORK_H
 #define DAYWORK_H
 #include <QDate>
-#include <QVector>
+#include <QList>
 #include "teamtask.h"
 
 class Daywork
@@ -9,12 +9,13 @@ class Daywork
 public:
     Daywork(){}
     Daywork(QDate date);
-    Daywork(QDate date, QVector<Teamtask> teamtasks);
+    void addTeamTask(TeamTask teamTask);
     QDate getDate() const;
-    QVector<Teamtask> getTeamTasks() const;
+    QList<TeamTask> getTeamTasks() const;
+    QList<TeamTask> getTTByAparatas(Aparatas aparatas) const;
 private:
     QDate _date;
-    QVector<Teamtask> _teamtasks;
+    QList<TeamTask> _teamTasks;
 };
 
 #endif // DAYWORK_H

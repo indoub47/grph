@@ -3,6 +3,7 @@
 #include <QList>
 #include "operatorius.h"
 #include "aparatas.h"
+#include <QListIterator>
 
 Team::Team(QString name)
 {
@@ -26,35 +27,13 @@ QList<Aparatas> Team::getAparatai() const
 
 void Team::addOperatorius(Operatorius operatorius)
 {
-    // test if doesn't exists
-    int i = 0;
-    int c = _operatoriai.count();
-    QString id = operatorius.getId();
-    while (i < c)
-    {
-        if (_operatoriai[i].getId() == id)
-        {
-            return;
-        }
-        i++;
-    }
+  if (!_operatoriai.contains(operatorius))
     _operatoriai.append(operatorius);
 }
 
 void Team::addAparatas(Aparatas aparatas)
 {
-    // test if doesn't exists
-    int i = 0;
-    int c = _aparatai.count();
-    QString id = aparatas.getId();
-    while (i < c)
-    {
-        if (_aparatai[i].getId() == id)
-        {
-            return;
-        }
-        i++;
-    }
+  if (!_aparatai.contains(aparatas))
     _aparatai.append(aparatas);
 }
 
@@ -62,35 +41,34 @@ void Team::removeOperatorius(int index)
 {
     _operatoriai.removeAt(index);
 }
+
 void Team::removeAparatas(int index)
 {
     _aparatai.removeAt(index);
 }
+
 void Team::removeOperatorius(QString id)
 {
-    int i = 0;
-    int c = _operatoriai.count();
-    while (i < c)
+  QList<Operatorius>::iterator i;
+  for (i = _operatoriai.begin(); i != _operatoriai.end(); ++i)
+  {
+    if ((*i).getId() == id)
     {
-        if (_operatoriai[i].getId() == id)
-        {
-            _operatoriai.removeAt(i);
-            break;
-        }
-        i++;
+      _operatoriai.removeOne(*i);
+      break;
     }
+  }
 }
+
 void Team::removeAparatas(QString id)
 {
-    int i = 0;
-    int c = _aparatai.count();
-    while (i < c)
+  QList<Aparatas>::iterator i;
+  for (i = _aparatai.begin(); i != _aparatai.end(); ++i)
+  {
+    if ((*i).getId() == id)
     {
-        if (_aparatai[i].getId() == id)
-        {
-            _aparatai.removeAt(i);
-            break;
-        }
-        i++;
+      _aparatai.removeOne(*i);
+      break;
     }
+  }
 }

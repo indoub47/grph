@@ -1,21 +1,23 @@
 #ifndef TEAMTASK_H
 #define TEAMTASK_H
-#include <QVector>
+#include <QList>
 #include "segmentas.h"
 #include "team.h"
 #include "sidework.h"
-class Teamtask
+class TeamTask
 {
 public:
-    Teamtask(){}
-    Teamtask(Team team, QVector<Segmentas> segmentai, QVector<Sidework> sideworks);
+    TeamTask(){}
+    TeamTask(Team team, QList<Segmentas> segmentai, QList<Sidework> sideworks);
     Team getTeam() const;
-    QVector<Segmentas> getSegmentai() const;
-    QVector<Sidework> getSideworks() const;
+    QList<Segmentas> getSegmentai() const;
+    QList<Sidework> getSideworks() const;
+    void addSegmentas(Segmentas segmentas);
+    void addSidework(Sidework sidework);
 private:
     Team _team;
-    QVector<Segmentas> _segmentai;
-    QVector<Sidework> _sideworks;
+    QList<Segmentas> _segmentai;
+    QList<Sidework> _sideworks;
 };
 
 #endif // TEAMTASK_H

@@ -5,10 +5,10 @@
 #include "meistrija.h"
 #include "linija.h"
 
-Segmentas::Segmentas(QString name, int id, QList<Meistrija> meistrijos, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija)
+Segmentas::Segmentas(QString name, int ind, QList<Meistrija> meistrijos, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija)
 {
         _name = name;
-        _id = id;
+        _ind = ind;
         _meistrijos = meistrijos;
         _kmPagr = kmPagr;
         _kmKt = kmKt;
@@ -22,9 +22,9 @@ QString Segmentas::getName() const
     return _name;
 }
 
-int Segmentas::getId() const
+int Segmentas::getInd() const
 {
-    return _id;
+    return _ind;
 }
 
 QList<Meistrija> Segmentas::getMeistrijos() const

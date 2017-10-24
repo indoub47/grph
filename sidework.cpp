@@ -11,7 +11,7 @@ QString Sidework::getFullName() const
 }
 
 Sidework::Sidework(QString name, QString fullName)
- {
-     _name = name;
-     _fullName = fullName;
- }
+{
+   _name = name;
+   _fullName = fullName;
+}
