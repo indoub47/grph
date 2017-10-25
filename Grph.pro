@@ -4,8 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
+QT += core gui
+QT += testlib
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Grph
@@ -35,7 +35,8 @@ SOURCES += \
     sidework.cpp \
     teamtask.cpp \
     daywork.cpp \
-    roster.cpp
+    roster.cpp \
+    testobjects.cpp
 
 HEADERS += \
         mainwindow.h \
