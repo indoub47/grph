@@ -17,6 +17,32 @@ Segmentas::Segmentas(QString name, int ind, QList<Meistrija> meistrijos, float k
         _linija = linija;
 }
 
+Segmentas::Segmentas(QString name, int ind, Meistrija meistrija, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija)
+{
+        _name = name;
+        _ind = ind;
+        _meistrijos.append(meistrija);
+        _kmPagr = kmPagr;
+        _kmKt = kmKt;
+        _iesmai = iesmai;
+        _nuoKada = nuoKada;
+        _linija = linija;
+}
+
+
+Segmentas::Segmentas(QString name, int ind, Meistrija meistrija1, Meistrija meistrija2, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija)
+{
+        _name = name;
+        _ind = ind;
+        _meistrijos.append(meistrija1);
+        _meistrijos.append(meistrija2);
+        _kmPagr = kmPagr;
+        _kmKt = kmKt;
+        _iesmai = iesmai;
+        _nuoKada = nuoKada;
+        _linija = linija;
+}
+
 QString Segmentas::getName() const
 {
     return _name;
