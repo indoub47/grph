@@ -3,37 +3,101 @@
 #include "sidework.h"
 #include "team.h"
 #include <QList>
+#include <QListIterator>
 
-TeamTask::TeamTask(Team team, QList<Segmentas> segmentai, QList<Sidework> sideworks)
+Teamtask::Teamtask(Team team)
+{
+  _team = team;
+}
+
+Teamtask::Teamtask(Team team, QList<Segmentas> segmentai, QList<Sidework> sideworks)
 {
     _team = team;
     _segmentai = segmentai;
     _sideworks = sideworks;
 }
 
-Team TeamTask::getTeam() const
+Team Teamtask::getTeam() const
 {
     return _team;
 }
 
-void TeamTask::addSegmentas(Segmentas segmentas)
+
+Team* Teamtask::getTeamP()
+{
+  return &_team;
+}
+
+
+Team& Teamtask::getTeamR()
+{
+  return _team;
+}
+
+
+void Teamtask::setTeam(Team team)
+{
+  _team = team;
+}
+
+void Teamtask::setSegmentai(QList<Segmentas> segmentai)
+{
+  _segmentai = segmentai;
+}
+
+void Teamtask::setSideworks(QList<Sidework> sideworks)
+{
+  _sideworks = sideworks;
+}
+
+void Teamtask::clearSegmentai()
+{
+  _segmentai.clear();
+}
+
+void Teamtask::clearSideworks()
+{
+  _sideworks.clear();
+}
+
+void Teamtask::addSegmentas(Segmentas segmentas)
 {
   if (!_segmentai.contains(segmentas))
     _segmentai.append(segmentas);
 }
 
-void TeamTask::addSidework(Sidework sidework)
+void Teamtask::addSidework(Sidework sidework)
 {
   if (!_sideworks.contains(sidework))
     _sideworks.append(sidework);
 }
 
-QList<Segmentas> TeamTask::getSegmentai() const
+const QList<Segmentas>& Teamtask::getSegmentai() const
 {
     return _segmentai;
 }
 
-QList<Sidework> TeamTask::getSideworks() const
+const QList<Sidework>& Teamtask::getSideworks() const
 {
     return _sideworks;
+}
+
+void Teamtask::mergeSegmentai(QList<Segmentas> segmentai)
+{
+  QList<Segmentas>::iterator i;
+  for (i = segmentai.begin(); i != segmentai.end(); ++i)
+  {
+    if (!_segmentai.contains(*i))
+      _segmentai << *i;
+  }
+}
+
+void Teamtask::mergeSideworks(QList<Sidework> sideworks)
+{
+  QList<Sidework>::iterator i;
+  for (i = sideworks.begin(); i != sideworks.end(); ++i)
+  {
+    if (!_sideworks.contains(*i))
+      _sideworks << *i;
+  }
 }

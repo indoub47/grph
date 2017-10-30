@@ -5,6 +5,7 @@
 #include "segmentas.h"
 #include "meistrija.h"
 #include "linija.h"
+#include "teamtask.h"
 #include <QList>
 #include <QTime>
 
@@ -13,11 +14,209 @@ class TestObjects: public QObject
 {
     Q_OBJECT
 private slots:
+    void testTeamtask();
     void testOperatorius();
     void testAparatas();
     void testTeam();
     void testSegmentas();
 };
+
+void TestObjects::testTeamtask()
+{
+  Operatorius op421("421", "Arūnas Mikužis", 1);
+  Operatorius op435("435", "Eduardas Antanas Rutskis", 3);
+  Operatorius op402("402", "Juozas Vaitkus", 2);
+  Operatorius op427("427", "Audrius Lubys", 1);
+  Operatorius op425("425", "Andrius Adakauskas", 1);
+  Operatorius op4251("425", "Andrius Adakauskas", 1);
+  Operatorius op428("428", "Bronius Mikužis", 2);
+
+  Aparatas ap828("828", "RDM-23", 1);
+  Aparatas ap826("826", "RDM-23", 2);
+  Aparatas ap8261("826", "RDM-23", 2);
+  Aparatas ap825("825", "RDM-23", 1);
+  Aparatas ap829("829", "RDM-23", 1);
+
+  QList<Operatorius> operList1;
+  operList1 << op421 << op435;
+  QList<Aparatas> aparList1;
+  aparList1 << ap828 << ap826;
+  Team tm828("828", operList1, aparList1);
+
+  QList<Operatorius> operList2;
+  operList2 << op427 << op425;
+  QList<Aparatas> aparList2;
+  aparList2 << ap825;
+  Team tm825("825", operList2, aparList2);
+
+
+  Meistrija km8 = Meistrija("Klaipėdos", "KM-8", 8, "Danė Kairienė");
+  Meistrija km1 = Meistrija("Pavenčių", "KM-1", 1, "Alvydas Gelžinis");
+  Meistrija km2 = Meistrija("Tryškių", "KM-2", 2, "Gintas Samuilevičius");
+  Meistrija km15 = Meistrija("Viduklės", "KM-15", 15, "Remigijus Saunoris");
+  Meistrija km14 = Meistrija("Batakių", "KM-14", 14, "Aurelijus Janušaits");
+  Meistrija km13 = Meistrija("Tauragės", "KM-13", 13, "Gintaras Šlekys");
+
+  Linija lin23 = Linija("23", "Klaipėda - Pagėgiai");
+  Linija lin01 = Linija("01", "Vilnius - Klaipėda");
+  Linija lin17 = Linija("17", "Radviliškis - Pagėgiai - valstybės siena");
+
+
+  QList<Meistrija> m8;
+  m8.append(km8);
+  Segmentas segm1 = Segmentas("km 1-8", 0, m8, 8, 0, 5, QTime(8, 0), lin23);
+  QList<Meistrija> m1_2;
+  m1_2.append(km1);
+  m1_2.append(km2);
+
+  Segmentas segm254 = Segmentas("km 254-264", 20, m1_2, 11, 0, 0, QTime(11, 30), lin01);
+  Segmentas segm372 = Segmentas("km 372-376", 150, km8, 5, 0, 4, QTime(8, 0), lin01);
+  Segmentas segm53 = Segmentas("km 53-59", 1, km15, 9, 0, 0, QTime(11, 30), lin17);
+  Segmentas segm75 = Segmentas("km 75-84", 50, km15, km14, 10, 0, 0, QTime(11, 30), lin17);
+  Segmentas segm103 = Segmentas("km 103-112", 120, km14, km13, 10, 0, 4, QTime(11, 30), lin17);
+  Segmentas segm113 = Segmentas("km 113-119", 200, km13, 5, 0, 4, QTime(11, 30), lin17);
+
+  QList<Segmentas> sgs1;
+  sgs1 << segm1;
+  sgs1 << segm75;
+
+  QList<Segmentas> sgs2;
+  sgs2 << segm103 << segm113;
+
+  QList<Segmentas> sgs3;
+  sgs3 << segm372 << segm254;
+
+  Sidework swT("T", "techninė priežiūra");
+  Sidework swEr("ER", "einamasis remontas");
+  Sidework swA("A", "ataskaita");
+  Sidework swTm("TM", "techniniai mokymai");
+
+  QList<Sidework> sdws1;
+  sdws1 << swA << swT;
+
+  Teamtask tt1(tm828);
+  QCOMPARE(tt1.getTeam().getName(), QString("828"));
+  QCOMPARE(tt1.getSegmentai().count(), 0);
+  QCOMPARE(tt1.getSideworks().count(), 0);
+  tt1.addSegmentas(segm53);
+  QCOMPARE(tt1.getSegmentai().count(), 1);
+  QCOMPARE(tt1.getSegmentai().first().getLinija().getId(), QString("17"));
+  tt1.addSidework(swTm);
+  QCOMPARE(tt1.getSideworks().count(), 1);
+  QCOMPARE(tt1.getSideworks().last().getName(), QString("TM"));
+  tt1.clearSideworks();
+  QCOMPARE(tt1.getSideworks().count(), 0);
+  tt1.setSideworks(sdws1);
+  QCOMPARE(tt1.getSideworks().count(), 2);
+  QCOMPARE(tt1.getSideworks().last().getName(), QString("T"));
+  QCOMPARE(tt1.getSideworks().first().getName(), QString("A"));
+  tt1.addSidework(swEr);
+  QCOMPARE(tt1.getSideworks().count(), 3);
+  QCOMPARE(tt1.getSideworks().last().getName(), QString("ER"));
+  QCOMPARE(tt1.getSideworks().first().getName(), QString("A"));
+
+  Teamtask tt2(tm825, sgs1, sdws1);
+  QCOMPARE(tt2.getTeam().getName(), QString("825"));
+  QCOMPARE(tt2.getSegmentai().count(), 2);
+  QCOMPARE(tt2.getSegmentai().last().getMeistrijos().last().getNr(), 14);
+  QCOMPARE(tt2.getSideworks().count(), 2);
+  QCOMPARE(tt2.getSideworks().last().getName(), QString("T"));
+  tt2.clearSegmentai();
+  QCOMPARE(tt2.getSegmentai().count(), 0);
+  tt2.setSegmentai(sgs2);
+  QCOMPARE(tt2.getSegmentai().count(), 2);
+  QCOMPARE(tt2.getSegmentai().last().getMeistrijos().last().getNr(), 13);
+  tt2.setSegmentai(sgs3);
+  QCOMPARE(tt2.getSegmentai().count(), 2);
+  QCOMPARE(tt2.getSegmentai().last().getMeistrijos().last().getShortName(), QString("KM-2"));
+
+
+  QCOMPARE(tt2.getTeam().getAparatai().count(), 1);
+  Team tm = tt2.getTeam();
+  tm.addAparatas(ap828);
+  QCOMPARE(tm.getAparatai().count(), 2);
+  QCOMPARE(tt2.getTeam().getAparatai().count(), 1);
+  tt2.getTeam().addAparatas(ap828);
+  QCOMPARE(tt2.getTeam().getAparatai().count(), 1);
+
+  // jeigu getTeam grąžinti neconst pointerį arba neconst reference?
+
+  QCOMPARE(tt2.getTeam().getAparatai().count(), 1);
+  Team* tmp = tt2.getTeamP();
+  tmp->addAparatas(ap828);
+  QCOMPARE(tt2.getTeam().getAparatai().count(), 2);
+  Team& tmr = tt2.getTeamR();
+  tmr.addAparatas(ap8261);
+  QCOMPARE(tt2.getTeam().getAparatai().count(), 3);
+
+  // testing mergeSideworks and mergeSegmentai
+  /*
+  Segmentas segm254 = Segmentas("km 254-264", 20, m1_2, 11, 0, 0, QTime(11, 30), lin01);
+  Segmentas segm372 = Segmentas("km 372-376", 150, km8, 5, 0, 4, QTime(8, 0), lin01);
+  Segmentas segm53 = Segmentas("km 53-59", 1, km15, 9, 0, 0, QTime(11, 30), lin17);
+  Segmentas segm75 = Segmentas("km 75-84", 50, km15, km14, 10, 0, 0, QTime(11, 30), lin17);
+  Segmentas segm103 = Segmentas("km 103-112", 120, km14, km13, 10, 0, 4, QTime(11, 30), lin17);
+  Segmentas segm113 = Segmentas("km 113-119", 200, km13, 5, 0, 4, QTime(11, 30), lin17);
+
+  Sidework swT("T", "techninė priežiūra");
+  Sidework swEr("ER", "einamasis remontas");
+  Sidework swA("A", "ataskaita");
+  Sidework swTm("TM", "techniniai mokymai");
+  */
+  Teamtask ttm(tm828);
+  ttm.addSegmentas(segm254);
+  ttm.addSegmentas(segm372);
+  ttm.addSidework(swT);
+  ttm.addSidework(swEr);
+
+  QCOMPARE(ttm.getSegmentai().count(), 2);
+  QCOMPARE(ttm.getSegmentai().first().getInd(), 20);
+  QCOMPARE(ttm.getSegmentai().last().getInd(), 150);
+
+  QList<Segmentas> sgm;
+  sgm << segm372 << segm53;
+  ttm.mergeSegmentai(sgm);
+  QCOMPARE(ttm.getSegmentai().count(), 3);
+  QCOMPARE(ttm.getSegmentai().first().getInd(), 20);
+  QCOMPARE(ttm.getSegmentai().last().getInd(), 1);
+  // 254-372-53
+  QList<Segmentas> empt;
+  ttm.mergeSegmentai(empt);
+  QCOMPARE(ttm.getSegmentai().count(), 3);
+  QCOMPARE(ttm.getSegmentai().first().getInd(), 20);
+  QCOMPARE(ttm.getSegmentai()[1].getInd(), 150);
+  QCOMPARE(ttm.getSegmentai().last().getInd(), 1);
+
+  QCOMPARE(ttm.getSideworks().count(), 2);
+  QCOMPARE(ttm.getSideworks().first().getName(), QString("T"));
+  QCOMPARE(ttm.getSideworks().last().getName(), QString("ER"));
+
+  QList<Sidework> emptsw;
+  ttm.mergeSideworks(emptsw);
+  QCOMPARE(ttm.getSideworks().count(), 2);
+  QCOMPARE(ttm.getSideworks().first().getName(), QString("T"));
+  QCOMPARE(ttm.getSideworks().last().getName(), QString("ER"));
+
+  QList<Sidework> sws;
+  sws << swA << swTm;
+  ttm.mergeSideworks(sws);
+  QCOMPARE(ttm.getSideworks().count(), 4);
+  QCOMPARE(ttm.getSideworks()[0].getName(), QString("T"));
+  QCOMPARE(ttm.getSideworks()[1].getName(), QString("ER"));
+  QCOMPARE(ttm.getSideworks()[2].getName(), QString("A"));
+  QCOMPARE(ttm.getSideworks()[3].getName(), QString("TM"));
+
+  Sidework sextra("XX", "XXXX");
+  QList<Sidework> swsx;
+  swsx << swA << sextra << swTm;
+  ttm.mergeSideworks(swsx);
+  QCOMPARE(ttm.getSideworks().count(), 5);
+  QCOMPARE(ttm.getSideworks()[0].getName(), QString("T"));
+  QCOMPARE(ttm.getSideworks()[1].getName(), QString("ER"));
+  QCOMPARE(ttm.getSideworks()[2].getName(), QString("A"));
+  QCOMPARE(ttm.getSideworks()[3].getName(), QString("TM"));
+  QCOMPARE(ttm.getSideworks()[4].getName(), QString("XX"));
+}
 
 void TestObjects::testSegmentas()
 {
@@ -181,6 +380,9 @@ void TestObjects::testTeam()
   QCOMPARE(team.getAparatai().count(), 4);
   QCOMPARE(team.getAparatai().last().getId(), QString("825"));
 
+  const Aparatas ap = team.getAparatas(2);
+  QCOMPARE(ap.getId(), QString("829"));
+
   // adding existing aparatas - 828, 826, 829, 825
   team.addAparatas(ap8261);
   QCOMPARE(team.getAparatai().count(), 4);
@@ -240,6 +442,11 @@ void TestObjects::testTeam()
   QCOMPARE(team.getOperatoriai().count(), 4);
   QCOMPARE(team.getOperatoriai().last().getId(), QString("402"));
 
+  //const Operatorius* opminus = team.getOperatorius(-2);
+  const Operatorius opok = team.getOperatorius(2);
+  QCOMPARE(opok.getId(), QString("428"));
+  //const Operatorius* opover = team.getOperatorius(12);
+
   // adding operatorius already in list - 427, 425, 428, 402
   team.addOperatorius(op4251);
   QCOMPARE(team.getOperatoriai().count(), 4);
@@ -274,6 +481,73 @@ void TestObjects::testTeam()
   QCOMPARE(team.getOperatoriai().count(), 2);
   QCOMPARE(team.getOperatoriai()[1].getId(), QString("402"));
   QCOMPARE(team.getOperatoriai().last().getId(), QString("402"));
+
+  // team: My first team
+  // op427, op402
+  // ap828, ap825
+  /*
+  Operatorius op421("421", "Arūnas Mikužis", 1);
+  Operatorius op435("435", "Eduardas Antanas Rutskis", 3);
+  Operatorius op402("402", "Juozas Vaitkus", 2);
+  Operatorius op427("427", "Audrius Lubys", 1);
+  Operatorius op425("425", "Andrius Adakauskas", 1);
+  Operatorius op4251("425", "Andrius Adakauskas", 1);
+  Operatorius op428("428", "Bronius Mikužis", 2);
+  */
+  /*
+  Aparatas ap828("828", "RDM-23", 1);
+  Aparatas ap826("826", "RDM-23", 2);
+  Aparatas ap8261("826", "RDM-23", 2);
+  Aparatas ap825("825", "RDM-23", 1);
+  Aparatas ap829("829", "RDM-23", 1);
+  */
+
+  Team teamEq("My first team");
+  Team team3("My second team");
+
+  // create equal team
+  QList<Aparatas> apEq;
+  apEq << ap825 << ap828;
+  QList<Operatorius> opEq;
+  opEq << op427 << op402;
+  teamEq.setAparatai(apEq);
+  teamEq.setOperatoriai(opEq);
+  // and compare
+  QCOMPARE(team == teamEq, true);
+
+  // remove operatorius and compare
+  teamEq.removeOperatorius(0);
+  QCOMPARE(team == teamEq, false);
+
+  // restore to equal and compare for control
+  teamEq.setOperatoriai(opEq);
+  QCOMPARE(team == teamEq, true);
+
+  // remove aparatas and compare
+  teamEq.removeAparatas("828");
+  QCOMPARE(team == teamEq, false);
+
+  // restore to equal and compare for control
+  teamEq.setAparatai(apEq);
+  QCOMPARE(team == teamEq, true);
+
+  // create yet another unequal case (different aparatas)
+  QList<Aparatas> apUneq;
+  apUneq << ap825 << ap829;
+  teamEq.setAparatai(apUneq);
+  QCOMPARE(team == teamEq, false);
+
+  // restore to equal and compare for control
+  teamEq.setAparatai(apEq);
+  QCOMPARE(team == teamEq, true);
+
+  // create yet another unequal case (different aparatas count)
+  QList<Aparatas> apUneq1;
+  apUneq1 << ap825 << ap828 << ap826;
+  teamEq.setAparatai(apUneq1);
+  QCOMPARE(team == teamEq, false);
+
+  QCOMPARE(team == team3, false);
 }
 
 

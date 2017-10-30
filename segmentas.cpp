@@ -53,7 +53,7 @@ int Segmentas::getInd() const
     return _ind;
 }
 
-QList<Meistrija> Segmentas::getMeistrijos() const
+const QList<Meistrija>& Segmentas::getMeistrijos() const
 {
     return _meistrijos;
 }

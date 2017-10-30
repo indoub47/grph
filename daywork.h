@@ -9,13 +9,14 @@ class Daywork
 public:
     Daywork(){}
     Daywork(QDate date);
-    void addTeamTask(TeamTask teamTask);
+    void addTeamtask(Teamtask teamtask);
     QDate getDate() const;
-    QList<TeamTask> getTeamTasks() const;
-    QList<TeamTask> getTTByAparatas(Aparatas aparatas) const;
+    const QList<Teamtask>& getTeamtasks() const;
+    QList<Teamtask> getTTByAparatas(Aparatas aparatas) const;
+    void clearTeamtasks();
 private:
     QDate _date;
-    QList<TeamTask> _teamTasks;
+    QList<Teamtask> _teamtasks;
 };
 
 #endif // DAYWORK_H

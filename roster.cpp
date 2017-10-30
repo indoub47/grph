@@ -19,7 +19,7 @@ QString Roster::getName() const
 {
     return _name;
 }
-QVector<Daywork> Roster::getDayworks() const
+const QVector<Daywork>& Roster::getDayworks() const
 {
     return _dayworks;
 }

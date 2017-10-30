@@ -22,7 +22,7 @@ public:
     Segmentas(QString name, int ind, Meistrija meistrija1, Meistrija meistrija2, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija);
     QString getName() const;
     int getInd() const;
-    QList<Meistrija> getMeistrijos() const;
+    const QList<Meistrija>& getMeistrijos() const;
     float getKmPagr() const;
     float getKmKt() const;
     int getIesmai() const;

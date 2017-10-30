@@ -24,7 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
         mainwindow.cpp \
     operatorius.cpp \
     aparatas.cpp \
