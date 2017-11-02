@@ -1,16 +1,10 @@
 #include "aparatas.h"
 #include <QString>
-using namespace std;
-Aparatas::Aparatas(QString id, QString model, int level)
+Aparatas::Aparatas(QString name, QString model, int level)
 {
-    _id = id;
+    setObjectName(name);
     _model = model;
     _level = level;
-}
-
-QString Aparatas::getId() const
-{
-    return _id;
 }
 
 QString Aparatas::getModel() const

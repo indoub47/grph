@@ -4,20 +4,23 @@
 #include <QVector>
 #include <QDate>
 #include "daywork.h"
+#include <QObject>
+#include <linija.h>
 
-class Roster
+class Roster : public QObject
 {
+  Q_OBJECT
 public:
     Roster(){}
-    Roster(QString name, QDate startDate, QDate endDate);
-    Roster(QString name, QVector<Daywork> dayworks);
-    QString getName() const;
-    const QVector<Daywork>& getDayworks() const;
+    Roster(QString objectName, QDate startDay, QDate endDay);
+    Roster(QString objectName, QVector<Daywork*> dayworks);
+    const QVector<Daywork*> getDayworks() const;
     QDate getStartDate() const;
     QDate getEndDate() const;
+
+    void deleteLinija(Linija*);
 private:
-    QString _name;
-    QVector<Daywork> _dayworks;
+    QVector<Daywork*> _dayworks;
 };
 
 #endif // ROSTER_H

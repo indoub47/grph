@@ -10,38 +10,53 @@ Daywork::Daywork(QDate date)
     //_teamtasks = new QList<Teamtask>();
 }
 
-void Daywork::addTeamtask(Teamtask teamtask)
+void Daywork::addTeamtask(Teamtask* teamtask)
 {
-  QList<Teamtask>::iterator i;
+  QList<Teamtask*>::iterator i;
   for (i = _teamtasks.begin(); i != _teamtasks.end(); ++i)
   {
-      if ((*i).getTeam() == teamtask.getTeam()) {
-        (*i).mergeSegmentai(teamtask.getSegmentai());
-        (*i).mergeSideworks(teamtask.getSideworks());
+      if ((*i)->getTeam() == teamtask->getTeam()) {
+        (*i)->mergeSegmentai(teamtask->getSegmentai());
+        (*i)->mergeSideworks(teamtask->getSideworks());
         return;
       }
   }
   _teamtasks << teamtask;
 }
 
-QDate Daywork::getDate() const
+const QDate Daywork::getDate() const
 {
     return _date;
 }
 
-const QList<Teamtask>& Daywork::getTeamtasks() const
+const QList<Teamtask*> Daywork::getTeamtasks() const
 {
     return _teamtasks;
 }
 
-QList<Teamtask> Daywork::getTTByAparatas(Aparatas aparatas) const
+const QList<Teamtask*> Daywork::getTTByAparatas(Aparatas* aparatas) const
 {
-  QList<Teamtask> result;
-  QListIterator<Teamtask> i(_teamtasks);
+  QList<Teamtask*> result;
+  QListIterator<Teamtask*> i(_teamtasks);
   while (i.hasNext())
   {
-    Teamtask tt = i.next();
-    if (tt.getTeam().getAparatai().contains(aparatas))
+    Teamtask* tt = i.next();
+    if (tt->getTeam()->getAparatai().contains(aparatas))
+    {
+      result << tt;
+    }
+  }
+  return result;
+}
+
+const QList<Teamtask *> Daywork::getTeamtasks(QString teamName) const
+{
+  QList<Teamtask*> result;
+  QListIterator<Teamtask*> i(_teamtasks);
+  while (i.hasNext())
+  {
+    Teamtask* tt = i.next();
+    if (tt->getTeam()->objectName() == teamName)
     {
       result << tt;
     }
@@ -52,4 +67,9 @@ QList<Teamtask> Daywork::getTTByAparatas(Aparatas aparatas) const
 void Daywork::clearTeamtasks()
 {
   _teamtasks.clear();
+}
+
+int Daywork::removeTeamtask(Teamtask* teamtask)
+{
+  return _teamtasks.removeAll(teamtask);
 }

@@ -1,16 +1,11 @@
 #include "operatorius.h"
 #include <QString>
 #include <QMutableStringListIterator>
-Operatorius::Operatorius(QString id, QString name, int level)
+Operatorius::Operatorius(QString objectName, QString name, int level)
 {
-    _id = id;
+    setObjectName(objectName);
     _name = name;
     _level = level;
-}
-
-QString Operatorius::getId() const
-{
-    return _id;
 }
 
 QString Operatorius::getName() const

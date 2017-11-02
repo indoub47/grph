@@ -30,12 +30,13 @@ SOURCES += \
     meistrija.cpp \
     segmentas.cpp \
     linija.cpp \
-    team.cpp \
     sidework.cpp \
-    teamtask.cpp \
     daywork.cpp \
     roster.cpp \
-    testobjects.cpp
+    testobjects.cpp \
+    team.cpp \
+    teamtask.cpp \
+    poolmanager.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +49,10 @@ HEADERS += \
     sidework.h \
     teamtask.h \
     daywork.h \
-    roster.h
+    roster.h \
+    team.h \
+    teamtask.h \
+    poolmanager.h
 
 FORMS += \
         mainwindow.ui

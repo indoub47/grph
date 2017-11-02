@@ -5,7 +5,7 @@
 #include "meistrija.h"
 #include "linija.h"
 
-Segmentas::Segmentas(QString name, int ind, QList<Meistrija> meistrijos, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija)
+Segmentas::Segmentas(QString name, int ind, QList<Meistrija*> meistrijos, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija* linija)
 {
         _name = name;
         _ind = ind;
@@ -17,7 +17,7 @@ Segmentas::Segmentas(QString name, int ind, QList<Meistrija> meistrijos, float k
         _linija = linija;
 }
 
-Segmentas::Segmentas(QString name, int ind, Meistrija meistrija, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija)
+Segmentas::Segmentas(QString name, int ind, Meistrija* meistrija, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija* linija)
 {
         _name = name;
         _ind = ind;
@@ -30,7 +30,7 @@ Segmentas::Segmentas(QString name, int ind, Meistrija meistrija, float kmPagr, f
 }
 
 
-Segmentas::Segmentas(QString name, int ind, Meistrija meistrija1, Meistrija meistrija2, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija)
+Segmentas::Segmentas(QString name, int ind, Meistrija* meistrija1, Meistrija* meistrija2, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija* linija)
 {
         _name = name;
         _ind = ind;
@@ -53,7 +53,7 @@ int Segmentas::getInd() const
     return _ind;
 }
 
-const QList<Meistrija>& Segmentas::getMeistrijos() const
+const QList<Meistrija*> Segmentas::getMeistrijos() const
 {
     return _meistrijos;
 }
@@ -78,7 +78,17 @@ QTime Segmentas::getNuoKada() const
     return _nuoKada;
 }
 
-Linija Segmentas::getLinija() const
+const Linija* Segmentas::getLinija() const
 {
-    return _linija;
+  return _linija;
+}
+
+int Segmentas::removeMeistrija(Meistrija* meistrija)
+{
+  return _meistrijos.removeAll(meistrija);
+}
+
+void Segmentas::removeLinija()
+{
+  _linija = nullptr;
 }

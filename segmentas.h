@@ -6,30 +6,27 @@
 #include "meistrija.h"
 #include "linija.h"
 #include <stdexcept>
+#include <QObject>
 
-//struct NotSameLinijaException : public std::invalid_argument {
-//   const char * what () const throw () {
-//      return "comparing segments from different linijas";
-//   }
-//};
-
-class Segmentas
+class Segmentas : public QObject
 {
+  Q_OBJECT
 public:
     Segmentas(){}
-    Segmentas(QString name, int ind, QList<Meistrija> meistrijos, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija);
-    Segmentas(QString name, int ind, Meistrija meistrija, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija);
-    Segmentas(QString name, int ind, Meistrija meistrija1, Meistrija meistrija2, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija linija);
+    Segmentas(QString name, int ind, QList<Meistrija*> meistrijos, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija* linija);
+    Segmentas(QString name, int ind, Meistrija* meistrija, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija* linija);
+    Segmentas(QString name, int ind, Meistrija* meistrija1, Meistrija* meistrija2, float kmPagr, float kmKt, int iesmai, QTime nuoKada, Linija* linija);
     QString getName() const;
     int getInd() const;
-    const QList<Meistrija>& getMeistrijos() const;
+    const QList<Meistrija*> getMeistrijos() const;
     float getKmPagr() const;
     float getKmKt() const;
     int getIesmai() const;
     QTime getNuoKada() const;
-    Linija getLinija() const;
+    const Linija* getLinija() const;
+    int removeMeistrija(Meistrija* meistrija);
+    void removeLinija();
 
-    // comparison
     friend inline bool operator< (const Segmentas& l, const Segmentas& r)
     {
       if (l._linija != r._linija)
@@ -47,12 +44,12 @@ public:
 private:
     QString _name;
     int _ind;
-    QList<Meistrija> _meistrijos;
+    QList<Meistrija*> _meistrijos;
     float _kmPagr;
     float _kmKt;
     int _iesmai;
     QTime _nuoKada;
-    Linija _linija;
+    Linija* _linija;
 };
 
 #endif // SEGMENTAS_H

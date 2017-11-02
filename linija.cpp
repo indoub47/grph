@@ -1,14 +1,10 @@
 #include "linija.h"
 #include <QString>
-Linija::Linija(QString id, QString name)
-{
-    _id= id;
-     _name = name;
-}
 
-QString Linija::getId() const
+Linija::Linija(QString objectName, QString name)
 {
-    return _id;
+    setObjectName(objectName);
+     _name = name;
 }
 
 QString Linija::getName() const

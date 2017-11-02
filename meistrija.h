@@ -1,14 +1,14 @@
 #ifndef MEISTRIJA_H
 #define MEISTRIJA_H
 #include <QString>
-
-class Meistrija
+#include <QObject>
+class Meistrija : public QObject
 {
+  Q_OBJECT
 public:
-   Meistrija(){};
-   Meistrija(QString name, QString shortName, int nr, QString meistras);
+   Meistrija(){}
+   Meistrija(QString objectName, QString name, int nr, QString meistras);
    QString getName() const;
-   QString getShortName() const;
    int getNr() const;
    QString getMeistras() const;
 
@@ -21,7 +21,6 @@ public:
    friend inline bool operator!=(const Meistrija& lhs, const Meistrija& rhs){ return !(lhs == rhs);}
 private:
   QString _name;
-  QString _shortName;
   int _nr;
   QString _meistras;
 };

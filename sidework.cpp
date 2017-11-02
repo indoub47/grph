@@ -5,13 +5,8 @@ QString Sidework::getName() const
     return _name;
 }
 
-QString Sidework::getFullName() const
-{
-     return _fullName;
-}
-
-Sidework::Sidework(QString name, QString fullName)
+Sidework::Sidework(QString objectName, QString name)
 {
    _name = name;
-   _fullName = fullName;
+   setObjectName(objectName);
 }
