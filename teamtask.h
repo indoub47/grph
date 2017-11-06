@@ -1,37 +1,37 @@
 #ifndef TEAMTASK_H
 #define TEAMTASK_H
 #include <QList>
-#include "segmentas.h"
+#include "segm.h"
 #include "team.h"
-#include "sidework.h"
+#include "swork.h"
 #include <QObject>
 
 class Teamtask : public QObject
 {
-  Q_OBJECT
+	Q_OBJECT
 public:
     Teamtask(){}
     Teamtask(Team* team);
-    Teamtask(Team* team, QList<Segmentas*> segmentai, QList<Sidework*> sideworks);
+    Teamtask(Team* team, QList<Segm*> segms, QList<Swork*> sworks);
     const Team* getTeam() const;
     void setTeam(Team* team);
-    void setSegmentai(QList<Segmentas*> segmentai);
-    void setSideworks(QList<Sidework*> sideworks);
-    void clearSegmentai();
-    void clearSideworks();
-    const QList<Segmentas*> getSegmentai() const;
-    const QList<Sidework*> getSideworks() const;
-    void addSegmentas(Segmentas* segmentas);
-    void addSidework(Sidework* sidework);
-    void mergeSegmentai(QList<Segmentas*>);
-    void mergeSideworks(QList<Sidework*>);
-    int removeSidework(Sidework*);
-    int removeSegmentas(Segmentas*);
+    void setSegms(QList<Segm*> segms);
+    void setSworks(QList<Swork*> sworks);
+    void clearSegms();
+    void clearSworks();
+    const QList<Segm*> getSegms() const;
+    const QList<Swork*> getSworks() const;
+    void addSegm(Segm* segm);
+    void addSwork(Swork* swork);
+    void mergeSegms(QList<Segm*>);
+    void mergeSworks(QList<Swork*>);
+    int removeSwork(Swork*);
+    int removeSegm(Segm*);
     void removeTeam();
 private:
     Team* _team;
-    QList<Segmentas*> _segmentai;
-    QList<Sidework*> _sideworks;
+    QList<Segm*> _segms;
+    QList<Swork*> _sworks;
 };
 
 #endif // TEAMTASK_H

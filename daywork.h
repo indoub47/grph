@@ -7,15 +7,15 @@
 
 class Daywork : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
     Daywork(){}
     Daywork(QDate date);
     void addTeamtask(Teamtask* teamtask);
     const QDate getDate() const;
     const QList<Teamtask*> getTeamtasks() const;
-    const QList<Teamtask*> getTTByAparatas(Aparatas* aparatas) const;
-    const QList<Teamtask*> getTeamtasks(QString teamName) const;
+    const QList<Teamtask*> getTTByApar(Apar* apar) const;
+    const QList<Teamtask*> getTeamtasks(QString teamId) const;
     void clearTeamtasks();
     int removeTeamtask(Teamtask*);
 private:

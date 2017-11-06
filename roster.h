@@ -9,16 +9,14 @@
 
 class Roster : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
     Roster(){}
-    Roster(QString objectName, QDate startDay, QDate endDay);
-    Roster(QString objectName, QVector<Daywork*> dayworks);
-    const QVector<Daywork*> getDayworks() const;
+    Roster(QString name, QDate startDay, QDate endDay);
+    Roster(QString name, QVector<Daywork*> dayworks);
+    QVector<Daywork*> getDayworks() const;
     QDate getStartDate() const;
     QDate getEndDate() const;
-
-    void deleteLinija(Linija*);
 private:
     QVector<Daywork*> _dayworks;
 };

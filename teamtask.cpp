@@ -1,20 +1,20 @@
 #include "teamtask.h"
-#include "segmentas.h"
-#include "sidework.h"
+#include "segm.h"
+#include "swork.h"
 #include "team.h"
 #include <QList>
 #include <QListIterator>
 
 Teamtask::Teamtask(Team* team)
 {
-  _team = team;
+	_team = team;
 }
 
-Teamtask::Teamtask(Team* team, QList<Segmentas*> segmentai, QList<Sidework*> sideworks)
+Teamtask::Teamtask(Team* team, QList<Segm*> segms, QList<Swork*> sworks)
 {
     _team = team;
-    _segmentai = segmentai;
-    _sideworks = sideworks;
+    _segms = segms;
+    _sworks = sworks;
 }
 
 const Team* Teamtask::getTeam() const
@@ -24,82 +24,82 @@ const Team* Teamtask::getTeam() const
 
 void Teamtask::setTeam(Team* team)
 {
-  _team = team;
+	_team = team;
 }
 
-void Teamtask::setSegmentai(QList<Segmentas*> segmentai)
+void Teamtask::setSegms(QList<Segm*> segms)
 {
-  _segmentai = segmentai;
+	_segms = segms;
 }
 
-void Teamtask::setSideworks(QList<Sidework*> sideworks)
+void Teamtask::setSworks(QList<Swork*> sworks)
 {
-  _sideworks = sideworks;
+	_sworks = sworks;
 }
 
-void Teamtask::clearSegmentai()
+void Teamtask::clearSegms()
 {
-  _segmentai.clear();
+	_segms.clear();
 }
 
-void Teamtask::clearSideworks()
+void Teamtask::clearSworks()
 {
-  _sideworks.clear();
+	_sworks.clear();
 }
 
-void Teamtask::addSegmentas(Segmentas* segmentas)
+void Teamtask::addSegm(Segm* segm)
 {
-  if (!_segmentai.contains(segmentas))
-    _segmentai.append(segmentas);
+	if (!_segms.contains(segm))
+		_segms.append(segm);
 }
 
-void Teamtask::addSidework(Sidework* sidework)
+void Teamtask::addSwork(Swork* swork)
 {
-  if (!_sideworks.contains(sidework))
-    _sideworks.append(sidework);
+	if (!_sworks.contains(swork))
+		_sworks.append(swork);
 }
 
-const QList<Segmentas*> Teamtask::getSegmentai() const
+const QList<Segm*> Teamtask::getSegms() const
 {
-    return _segmentai;
+    return _segms;
 }
 
-const QList<Sidework*> Teamtask::getSideworks() const
+const QList<Swork*> Teamtask::getSworks() const
 {
-    return _sideworks;
+    return _sworks;
 }
 
-void Teamtask::mergeSegmentai(QList<Segmentas*> segmentai)
+void Teamtask::mergeSegms(QList<Segm*> segms)
 {
-  QList<Segmentas*>::iterator i;
-  for (i = segmentai.begin(); i != segmentai.end(); ++i)
-  {
-    if (!_segmentai.contains(*i))
-      _segmentai << *i;
-  }
+	QList<Segm*>::iterator i;
+	for (i = segms.begin(); i != segms.end(); ++i)
+	{
+		if (!_segms.contains(*i))
+			_segms << *i;
+	}
 }
 
-void Teamtask::mergeSideworks(QList<Sidework*> sideworks)
+void Teamtask::mergeSworks(QList<Swork*> sworks)
 {
-  QList<Sidework*>::iterator i;
-  for (i = sideworks.begin(); i != sideworks.end(); ++i)
-  {
-    if (!_sideworks.contains(*i))
-      _sideworks << *i;
-  }
+	QList<Swork*>::iterator i;
+	for (i = sworks.begin(); i != sworks.end(); ++i)
+	{
+		if (!_sworks.contains(*i))
+			_sworks << *i;
+	}
 }
 
-int Teamtask::removeSidework(Sidework* sidework)
+int Teamtask::removeSwork(Swork* swork)
 {
-  return _sideworks.removeAll(sidework);
+	return _sworks.removeAll(swork);
 }
 
-int Teamtask::removeSegmentas(Segmentas* segmentas)
+int Teamtask::removeSegm(Segm* segm)
 {
-  return _segmentai.removeAll(segmentas);
+	return _segms.removeAll(segm);
 }
 
 void Teamtask::removeTeam()
 {
-  _team = nullptr;
+	_team = nullptr;
 }

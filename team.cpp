@@ -1,115 +1,116 @@
 #include "team.h"
 #include <QString>
 #include <QList>
-#include "operatorius.h"
-#include "aparatas.h"
+#include "oper.h"
+#include "apar.h"
 #include <QListIterator>
 
-Team::Team(QString objectName)
+Team::Team(QString id)
 {
-    setObjectName(objectName);
+    _id = id;
 }
 
-Team::Team(QString objectName, QList<Operatorius*> operatoriai, QList<Aparatas*> aparatai)
+Team::Team(QString id, QList<Oper*> opers, QList<Apar*> apars)
 {
-  setObjectName(objectName);
-  _operatoriai = operatoriai;
-  _aparatai = aparatai;
+    _id = id;
+    _opers = opers;
+    _apars = apars;
 }
 
-const QList<Operatorius*> Team::getOperatoriai() const
+const QList<Oper*> Team::getOpers() const
 {
-    return _operatoriai;
+    return _opers;
 }
 
-const QList<Aparatas*> Team::getAparatai() const
+const QList<Apar*> Team::getApars() const
 {
-    return _aparatai;
+    return _apars;
 }
 
 
-const Operatorius* Team::getOperatorius(int indx) const
+const Oper* Team::getOper(int indx) const
 {
-    return _operatoriai.at(indx);
+    return _opers.at(indx);
 }
 
-const Aparatas* Team::getAparatas(int indx) const
+const Apar* Team::getApar(int indx) const
 {
-    return _aparatai.at(indx);
+    return _apars.at(indx);
 }
 
-void Team::setOperatoriai(QList<Operatorius*> operatoriai)
+QString Team::getId() const
 {
-  _operatoriai = operatoriai;
+    return _id;
 }
 
-void Team::setAparatai(QList<Aparatas*> aparatai)
+void Team::setOpers(QList<Oper*> opers)
 {
-  _aparatai = aparatai;
+    _opers = opers;
 }
 
-void Team::clearOperatoriai()
+void Team::setApars(QList<Apar*> apars)
 {
-  _operatoriai.clear();
+    _apars = apars;
 }
 
-void Team::clearAparatai()
+void Team::clearOpers()
 {
-  _aparatai.clear();
+    _opers.clear();
 }
 
-void Team::addOperatorius(Operatorius* operatorius)
+void Team::clearApars()
 {
-  if (!_operatoriai.contains(operatorius))
-    _operatoriai.append(operatorius);
+    _apars.clear();
 }
 
-void Team::addAparatas(Aparatas* aparatas)
+void Team::addOper(Oper* oper)
 {
-  if (!_aparatai.contains(aparatas))
-    _aparatai.append(aparatas);
+    if (!_opers.contains(oper))
+        _opers.append(oper);
 }
 
-int Team::removeOperatorius(Operatorius* operatorius)
+void Team::addApar(Apar* apar)
 {
-    return _operatoriai.removeAll(operatorius);
+    if (!_apars.contains(apar))
+        _apars.append(apar);
 }
 
-int Team::removeAparatas(Aparatas* aparatas)
+int Team::removeOper(Oper* oper)
 {
-    return _aparatai.removeAll(aparatas);
+    return _opers.removeAll(oper);
+}
+
+int Team::removeApar(Apar* apar)
+{
+    return _apars.removeAll(apar);
 }
 
 bool operator== (const Team& l, const Team& r)
 {
-  if (l.objectName() != r.objectName())
-    return false;
+    if (l._id != r._id)
+        return false;
 
-  if (l._aparatai.count() != r._aparatai.count())
-    return false;
+    if (l._apars.count() != r._apars.count())
+        return false;
 
-  QList<Aparatas*>::const_iterator ia;
-  for (ia = l._aparatai.begin(); ia != l._aparatai.end(); ++ia)
-  {
-    if (!r._aparatai.contains(*ia))
+    QList<Apar*>::const_iterator ia;
+    for (ia = l._apars.begin(); ia != l._apars.end(); ++ia)
     {
-      return false;
+        if (!r._apars.contains(*ia))
+            return false;
     }
-  }
 
-  if (l._operatoriai.count() != r._operatoriai.count())
-    return false;
+    if (l._opers.count() != r._opers.count())
+        return false;
 
-  QList<Operatorius*>::const_iterator io;
-  for (io = l._operatoriai.begin(); io != l._operatoriai.end(); ++io)
-  {
-    if (!r._operatoriai.contains(*io))
+    QList<Oper*>::const_iterator io;
+    for (io = l._opers.begin(); io != l._opers.end(); ++io)
     {
-      return false;
+        if (!r._opers.contains(*io))
+            return false;
     }
-  }
 
-  return true;
+    return true;
 }
 
 

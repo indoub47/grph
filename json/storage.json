@@ -1,0 +1,62 @@
+{
+"linijos":[
+    {"id":"01", "name":"Vilnius - Klaipėda"},
+    {"id":"17", "name":"Radviliškis - Pagėgiai - valstybės siena"},
+    {"id":"23", "name":"Klaipėda - Pagėgiai"},
+    {"id":"22", "name":"Kretinga - Darbėnai"},
+    {"id":"24", "name":"Rimkai - Draugystė"}
+],
+"divs":[
+    {"id":"KM-1", "name":"Pavenčių", "nr":1, "meistras":"Alvydas Gelžinis"},
+    {"id":"KM-2", "name":"Tryškių", "nr":2, "meistras":"Gintas Samuilevičius"},
+    {"id":"KM-3", "name":"Telšių", "nr":3, "meistras":"Virgilijus Rubinas"},
+    {"id":"KM-4", "name":"Plungės", "nr":4, "meistras":"Kazys Gaučys"},
+    {"id":"KM-5", "name":"Kūlupėnų", "nr":5, "meistras":"Vidmantas Samoška"},
+    {"id":"KM-6", "name":"Kretingos", "nr":6, "meistras":"Kazys Vaičius"},
+    {"id":"KM-8", "name":"Klaipėdos", "nr":8, "meistras":"Petras Sakutis"},
+    {"id":"KM-9", "name":"Rimkų", "nr":9, "meistras":"Aleksejus Gudanis"},
+    {"id":"KM-10", "name":"Draugystės", "nr":10, "meistras":"Petras Motiejauskas"},
+    {"id":"KM-11", "name":"Šilutės", "nr":11, "meistras":"Sigutė Petkelienė"},
+    {"id":"KM-12", "name":"Pagėgių", "nr":12, "meistras":"Rimas Žemgulys"},
+    {"id":"KM-13", "name":"Tauragės", "nr":13, "meistras":"Gintaras Šlekys"},
+    {"id":"KM-14", "name":"Batakių", "nr":14, "meistras":"Aurelijus Janušaitis"},
+    {"id":"KM-15", "name":"Viduklės", "nr":15, "meistras":"Remigijus Saunoris"}
+],
+"sworks":[
+    {"id":"A", "name":"ataskaita"},
+    {"id":"K", "name":"akumuliatorių krovimas"},
+    {"id":"M", "name":"techniniai mokymai"},
+    {"id":"P", "name":"defektoskopo pervežimas"},
+    {"id":"R", "name":"defektoskopo remontas"},
+    {"id":"T", "name":"defektoskopo TA"},
+    {"id":"KA", "name":"km atsargos bėgių tikrinimas"},
+    {"id":"ER", "name":"einamasis remontas ir patikra"}
+],
+"opers":[
+    {"id":"421", "name":"Arūnas Mikužis", "level":1},
+    {"id":"428", "name":"Bronius Mikužis", "level":1},
+    {"id":"425", "name":"Andrius Adakauskas", "level":1},
+    {"id":"427", "name":"Audrius Lubys", "level":1},
+    {"id":"432", "name":"Paulius Brazdauskas", "level":2},
+    {"id":"419", "name":"Leonas Burkauskas", "level":2},
+    {"id":"402", "name":"Juozas Vaitkus", "level":2},
+    {"id":"407", "name":"Egidijus Butkus", "level":4},
+    {"id":"437", "name":"Linas Maciulevičius", "level":4},
+    {"id":"436", "name":"Liudas Vansevičius", "level":4},
+    {"id":"429", "name":"Robertas Dveržeckas", "level":4},
+    {"id":"426", "name":"Tomas Liatukas", "level":4},
+    {"id":"410", "name":"Vincas Motiejūnas", "level":4},
+    {"id":"422", "name":"Žilvinas Butkus", "level":4}
+],
+"apars":[
+    {"id":"810", "nr":"17", "model":"RDM-12"},
+    {"id":"821", "nr":"8", "model":"RDM-23"},
+    {"id":"822", "nr":"13", "model":"RDM-23"},
+    {"id":"824", "nr":"43", "model":"RDM-23"},
+    {"id":"825", "nr":"47", "model":"RDM-23"},
+    {"id":"826", "nr":"51", "model":"RDM-23"},
+    {"id":"827", "nr":"52", "model":"RDM-23"},
+    {"id":"828", "nr":"57", "model":"RDM-23"},
+    {"id":"829", "nr":"62", "model":"RDM-23"}
+]
+}
