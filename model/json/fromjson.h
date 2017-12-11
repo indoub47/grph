@@ -1,10 +1,10 @@
 #ifndef FROMJSON_H
 #define FROMJSON_H
-#include "linija.h"
-#include "div.h"
-#include "oper.h"
-#include "apar.h"
-#include "swork.h"
+#include "model/linija.h"
+#include "model/div.h"
+#include "model/oper.h"
+#include "model/apar.h"
+#include "model/swork.h"
 #include <QString>
 #include <QVector>
 #include <QJsonObject>

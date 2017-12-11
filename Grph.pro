@@ -1,26 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-10-19T18:15:38
+# Project created by QtCreator 2017-11-28T19:43:46
 #
 #-------------------------------------------------
 
-# uzkomentuota mano pagal testapp
-#QT += core gui
-
-# prideta mano pagal testapp
-QT -= gui
-
-# sitas reikalingas testavimui
-QT += testlib
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Grph
 TEMPLATE = app
-
-# prideta mano pagal testapp
-CONFIG += c++11 console
-CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -35,39 +24,51 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    apar.cpp \
-    daywork.cpp \
-    div.cpp \
-    json/fromjson.cpp \
-    linija.cpp \
-    main.cpp \
-	mainwindow.cpp \
-    oper.cpp \
-    poolmanager.cpp \
-    roster.cpp \
-    segm.cpp \
-    swork.cpp \
-    team.cpp \
-    teamtask.cpp \
-    testobjects.cpp
+        main.cpp \
+    mainwindow.cpp \
+    teamworkeditdialog.cpp \
+    model/json/fromjson.cpp \
+    model/apar.cpp \
+    model/daywork.cpp \
+    model/div.cpp \
+    model/linija.cpp \
+    model/oper.cpp \
+    model/poolmanager.cpp \
+    model/roster.cpp \
+    model/segm.cpp \
+    model/swork.cpp \
+    model/team.cpp \
+    model/teamtask.cpp \
+    teamtasktablewitem.cpp \
+    indx.cpp
 
 HEADERS += \
-    apar.h \
-    daywork.h \
-    div.h \
-    json/fromjson.h \
-    linija.h \
-	mainwindow.h \
-    oper.h \
-    poolmanager.h \
-    roster.h \
-    segm.h \
-    swork.h \
-    team.h \
-    teamtask.h
-
-DISTFILES += \
-    json/storage.json
+        mainwindow.h \
+    teamworkeditdialog.h \
+    model/json/fromjson.h \
+    model/apar.h \
+    model/daywork.h \
+    model/div.h \
+    model/linija.h \
+    model/oper.h \
+    model/poolmanager.h \
+    model/roster.h \
+    model/segm.h \
+    model/swork.h \
+    model/team.h \
+    model/teamtask.h \
+    teamtasktablewitem.h \
+    indx.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    teamworkeditdialog.ui
+
+SUBDIRS += \
+    Grph.pro
+
+DISTFILES += \
+    Grph.pro.user \
+    model/json/storage.json
+
+

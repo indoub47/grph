@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QList>
+#include <QDate>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +19,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    int linCount, teamCount, dayCount;
+    QDate startDate;
+    int btnWidth, btnHeight;
+    QWidget* cWidget;
 };
 
 #endif // MAINWINDOW_H

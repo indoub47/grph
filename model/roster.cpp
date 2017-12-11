@@ -3,6 +3,7 @@
 #include <QVector>
 #include <QDate>
 #include "daywork.h"
+#include <QObject>
 
 Roster::Roster(QString name, QDate startDay, QDate endDay)
 {

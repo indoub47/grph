@@ -3,9 +3,9 @@
 #include <QString>
 #include <QVector>
 #include <QDate>
-#include "daywork.h"
+#include "model/daywork.h"
 #include <QObject>
-#include <linija.h>
+#include "model/linija.h"
 
 class Roster : public QObject
 {
