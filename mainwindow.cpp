@@ -23,25 +23,21 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(cWidget);
     QVBoxLayout* graphLayout = new QVBoxLayout();
     cWidget->setLayout(graphLayout);
+    QTableWidget* tableWidget = new QTableWidget(teamCount*linCount, dayCount);
     for (int lin = 0; lin < linCount; lin++)
     {
-        QLabel* label = new QLabel(QString("Linija: %1").arg(lin));
-        QTableWidget* tableWidget = new QTableWidget(teamCount, dayCount);
-        QVBoxLayout* lineLayout = new QVBoxLayout();
         for (int t = 0; t < teamCount; t++)
         {
             for (QDate d = startDate; d < startDate.addDays(dayCount); d=d.addDays(1))
             {
                 TeamtaskTableWItem* tableItem = new TeamtaskTableWItem(Indx(QString::number(t), QString::number(lin), d));
-                tableWidget->setItem(t, startDate.daysTo(d), tableItem);
+                tableWidget->setItem(lin * teamCount + t, startDate.daysTo(d), tableItem);
 
                 qDebug() << tableItem->indx();
             }
         }
-        lineLayout->addWidget(label);
-        lineLayout->addWidget(tableWidget);
-        graphLayout->addLayout(lineLayout);
     }
+    graphLayout->addWidget(tableWidget);
 }
 
 MainWindow::~MainWindow()
